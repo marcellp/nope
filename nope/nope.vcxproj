@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="raknet_hook.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Library Include="SFAPI\SAMPFUNCS.lib" />
@@ -247,6 +248,7 @@
     <ClInclude Include="game_api\sdk\WString.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="nope.hpp" />
+    <ClInclude Include="raknet_hook.hpp" />
     <ClInclude Include="SFAPI\SAMPFUNCS_API.h" />
     <ClInclude Include="SFAPI\SFCLEO.h" />
     <ClInclude Include="SFAPI\SFGame.h" />

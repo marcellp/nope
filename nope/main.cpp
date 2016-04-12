@@ -82,6 +82,11 @@ void CALLBACK mainloop()
 		pprintf("nope " PROGRAM_VERSION " has been loaded, use /nope for general help.");
 		SF->getSAMP()->registerChatCommand("nope", cmd_nope);
 
+		SF->getRakNet()->registerRakNetCallback(RakNetScriptHookType::RAKHOOK_TYPE_INCOMING_PACKET, nope_in);
+		SF->getRakNet()->registerRakNetCallback(RakNetScriptHookType::RAKHOOK_TYPE_INCOMING_RPC, nope_in);
+		SF->getRakNet()->registerRakNetCallback(RakNetScriptHookType::RAKHOOK_TYPE_OUTCOMING_PACKET, nope_out);
+		SF->getRakNet()->registerRakNetCallback(RakNetScriptHookType::RAKHOOK_TYPE_OUTCOMING_RPC, nope_out);
+
 		init = true;
 	}
 }
