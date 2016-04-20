@@ -54,17 +54,15 @@ static void usage()
 void CALLBACK cmd_nope(std::string param)
 {
 	char *param_str = _strdup(param.c_str());
-	char *tokens[3] = { NULL, NULL };
 	int font_size = 0;
-
-	tokens[0] = strtok(param_str, " ");
 
 	if (param.empty() || !_strcmpi(param_str, "help"))
 		usage();
 	else if (!_strcmpi(param_str, "version"))
 		version();
-	else
-		usage();
+	else {
+		nope_do(param_str);
+	}
 }
 
 void CALLBACK mainloop()
@@ -79,7 +77,7 @@ void CALLBACK mainloop()
 		if (!SF->getSAMP()->IsInitialized())
 			return;
 
-		pprintf("nope " PROGRAM_VERSION " has been loaded, use /nope for general help.");
+		pprintf("nope " PROGRAM_VERSION " has been loaded, use /nope help for general help.");
 		SF->getSAMP()->registerChatCommand("nope", cmd_nope);
 
 		SF->getRakNet()->registerRakNetCallback(RakNetScriptHookType::RAKHOOK_TYPE_INCOMING_PACKET, nope_in);

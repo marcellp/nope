@@ -1,7 +1,6 @@
 #include "nope.hpp"
 
-nop_data nop_rpcs[255][2];
-const nop_list nop_packets[189] = {
+nop_list nop_raknet[189] = {
 	{ "ClickPlayer", RPCEnumeration::RPC_ClickPlayer, true },
 	{ "ClientJoin", RPCEnumeration::RPC_ClientJoin, true },
 	{ "EnterVehicle", RPCEnumeration::RPC_EnterVehicle, true },
@@ -192,3 +191,59 @@ const nop_list nop_packets[189] = {
 	{ "ID_PASSENGER_SYN", PacketEnumeration::ID_PASSENGER_SYNC, false },
 	{ "ID_SPECTATOR_SYN", PacketEnumeration::ID_SPECTATOR_SYNC, false }
 };
+
+bool nop_states[255][2];
+
+static bool convert_int(const char *str, int *val, int base)
+{
+	char *tmp;
+
+	errno = 0;
+	*val = strtol(str, &tmp, 10);
+
+	if (tmp == str || *tmp != '\0' || ((*val == LONG_MIN || *val == LONG_MAX) && errno == ERANGE))
+		return false;
+	else
+		return true;
+}
+
+void nope_do(char *arg)
+{
+	char *raknet_name, *instruction_str;
+	int arr_element = -1, instruction;
+	bool is_rpc;
+
+	raknet_name = strtok(arg, " ");
+	instruction_str = strtok(NULL, " ");
+
+	if (!raknet_name || !instruction_str)
+		return pprintf("/nope [raknet packet/RPC] [on/off/tog] [duration] [offset]");
+
+	if (!_strcmpi(instruction_str, "on"))
+		instruction = 0;
+	else if (!_strcmpi(instruction_str, "off"))
+		instruction = 1;
+	else if (!_strcmpi(instruction_str, "tog"))
+		instruction = 2;
+	else
+		return pprintf("Invalid instruction (off/on/tog).");
+
+	for (int i = 0; i < sizeof(nop_raknet) / sizeof(nop_raknet[0]); i++) {
+		if (!_strcmpi(raknet_name, nop_raknet[i].name)) {
+			arr_element = i;
+			is_rpc = nop_raknet[i].is_rpc;
+		}
+	}
+
+	if (arr_element == -1)
+		return pprintf("Invalid packet/RPC name.");
+
+	if (instruction == 0)
+		nop_states[arr_element][is_rpc] = true;
+	else if(instruction == 1)
+		nop_states[arr_element][is_rpc] = false;
+	else
+		nop_states[arr_element][is_rpc] = !nop_states[arr_element][is_rpc];
+
+	pprintf("state of %s set to %s.", nop_raknet[arr_element].name, (nop_states[arr_element][is_rpc]) ? ("NOP'd") : ("not NOP'd"));
+}
