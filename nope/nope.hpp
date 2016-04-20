@@ -10,9 +10,9 @@
 #define VERSION_OPTION_DESCRIPTION \
   "\t/nope version\n\t\toutput version information and exit\n"
 
+#include <assert.h>
 #include <windows.h>
 #include <string>
-#include <assert.h>
 #include <process.h>
 #include <time.h>
 
@@ -20,4 +20,5 @@
 #include "game_api\game_api.h"
 
 #include "main.hpp"
+#include "nop_list.hpp"
 #include "raknet_hook.hpp"

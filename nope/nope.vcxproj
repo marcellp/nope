@@ -89,6 +89,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="nop_list.cpp" />
     <ClCompile Include="raknet_hook.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -248,6 +249,7 @@
     <ClInclude Include="game_api\sdk\WString.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="nope.hpp" />
+    <ClInclude Include="nop_list.hpp" />
     <ClInclude Include="raknet_hook.hpp" />
     <ClInclude Include="SFAPI\SAMPFUNCS_API.h" />
     <ClInclude Include="SFAPI\SFCLEO.h" />

@@ -41,8 +41,8 @@ static void usage()
 	char buf[2048];
 
 	sprintf_s(buf, 2048,
-		PROGRAM_NAME "is a modification for San Andreas: Multiplayer that\n"
-		"can reroute and block (NOP) incoming and outgoing netcode packets."
+		PROGRAM_NAME " is a modification for San Andreas: Multiplayer that can reroute\n"
+		"and block (NOP) incoming and outgoing netcode packets.\n\n"
 		HELP_OPTION_DESCRIPTION
 		VERSION_OPTION_DESCRIPTION
 		);

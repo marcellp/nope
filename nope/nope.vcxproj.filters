@@ -3,6 +3,7 @@
   <ItemGroup>
     <ClCompile Include="main.cpp" />
     <ClCompile Include="raknet_hook.cpp" />
+    <ClCompile Include="nop_list.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SFAPI">
@@ -498,5 +499,6 @@
     <ClInclude Include="nope.hpp" />
     <ClInclude Include="main.hpp" />
     <ClInclude Include="raknet_hook.hpp" />
+    <ClInclude Include="nop_list.hpp" />
   </ItemGroup>
 </Project>
