@@ -78,7 +78,7 @@ void CALLBACK mainloop()
 		if (!SF->getSAMP()->IsInitialized())
 			return;
 
-		pprintf("nope " PROGRAM_VERSION " has been loaded, use /nope help for general help.");
+		pprintf("nope " PROGRAM_VERSION " has been loaded, use /nope for general help.");
 		SF->getSAMP()->registerChatCommand("nope", cmd_nope);
 
 		SF->getRakNet()->registerRakNetCallback(RakNetScriptHookType::RAKHOOK_TYPE_INCOMING_PACKET, nope_packet_in);
