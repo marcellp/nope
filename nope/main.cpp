@@ -43,6 +43,7 @@ static void usage()
 	sprintf_s(buf, 2048,
 		PROGRAM_NAME " is a modification for San Andreas: Multiplayer that can reroute\n"
 		"and block (NOP) incoming and outgoing netcode packets.\n\n"
+		"\t/nope [RakNet packet/RPC name] [on/off] [in/out]\n\t\tNOP the specified raknet RPC/packet.\n"
 		HELP_OPTION_DESCRIPTION
 		VERSION_OPTION_DESCRIPTION
 		);
