@@ -1,3 +1,5 @@
+#include "nope.hpp"
+
 void nope_do(char *arg)
 {
 	char *raknet_name, *instruction_str, *direction_str;
