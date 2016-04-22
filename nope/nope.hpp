@@ -21,4 +21,5 @@
 
 #include "main.hpp"
 #include "nop_list.hpp"
+#include "nope_commands.hpp"
 #include "raknet_hook.hpp"

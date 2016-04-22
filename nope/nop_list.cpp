@@ -152,7 +152,7 @@ nop_list nop_raknet[189] = {
 	{ "ID_RPC_MAPPING", PacketEnumeration::ID_RPC_MAPPING, false },
 	{ "ID_SET_RANDOM_NUMBER_SEED", PacketEnumeration::ID_SET_RANDOM_NUMBER_SEED, false },
 	{ "ID_RPC", PacketEnumeration::ID_RPC, false },
-	{ "ID_RPC_REPL", PacketEnumeration::ID_RPC_REPLY, false },
+	{ "ID_RPC_REPLY", PacketEnumeration::ID_RPC_REPLY, false },
 	{ "ID_DETECT_LOST_CONNECTIONS", PacketEnumeration::ID_DETECT_LOST_CONNECTIONS, false },
 	{ "ID_OPEN_CONNECTION_REQUEST", PacketEnumeration::ID_OPEN_CONNECTION_REQUEST, false },
 	{ "ID_OPEN_CONNECTION_REPLY", PacketEnumeration::ID_OPEN_CONNECTION_REPLY, false },
@@ -169,7 +169,7 @@ nop_list nop_raknet[189] = {
 	{ "ID_INVALID_PASSWORD", PacketEnumeration::ID_INVALID_PASSWORD, false },
 	{ "ID_MODIFIED_PACKET", PacketEnumeration::ID_MODIFIED_PACKET, false },
 	{ "ID_PONG", PacketEnumeration::ID_PONG, false },
-	{ "ID_TIMESTAM", PacketEnumeration::ID_TIMESTAMP, false },
+	{ "ID_TIMESTAMP", PacketEnumeration::ID_TIMESTAMP, false },
 	{ "ID_RECEIVED_STATIC_DATA", PacketEnumeration::ID_RECEIVED_STATIC_DATA, false },
 	{ "ID_REMOTE_DISCONNECTION_NOTIFICATION", PacketEnumeration::ID_REMOTE_DISCONNECTION_NOTIFICATION, false },
 	{ "ID_REMOTE_CONNECTION_LOST", PacketEnumeration::ID_REMOTE_CONNECTION_LOST, false },
@@ -192,61 +192,4 @@ nop_list nop_raknet[189] = {
 	{ "ID_SPECTATOR_SYNC", PacketEnumeration::ID_SPECTATOR_SYNC, false }
 };
 
-bool nop_states[255][2];
-
-static bool convert_int(const char *str, int *val, int base)
-{
-	char *tmp;
-
-	errno = 0;
-	*val = strtol(str, &tmp, 10);
-
-	if (tmp == str || *tmp != '\0' || ((*val == LONG_MIN || *val == LONG_MAX) && errno == ERANGE))
-		return false;
-	else
-		return true;
-}
-
-void nope_do(char *arg)
-{
-	char *raknet_name, *instruction_str;
-	int arr_element = -1, instruction;
-	bool is_rpc;
-
-	raknet_name = strtok(arg, " ");
-	instruction_str = strtok(NULL, " ");
-
-	if (!raknet_name || !instruction_str)
-		return pprintf("/nope [raknet packet/RPC] [on/off/tog] [duration] [offset]");
-
-	if (!_strcmpi(instruction_str, "on"))
-		instruction = 0;
-	else if (!_strcmpi(instruction_str, "off"))
-		instruction = 1;
-	else if (!_strcmpi(instruction_str, "tog"))
-		instruction = 2;
-	else
-		return pprintf("Invalid instruction (off/on/tog).");
-
-	for (int i = 0; i < sizeof(nop_raknet) / sizeof(nop_raknet[0]); i++) {
-		if (!_strcmpi(raknet_name, nop_raknet[i].name)) {
-			arr_element = i;
-			is_rpc = nop_raknet[i].is_rpc;
-		}
-	}
-
-	if (arr_element == -1)
-		return pprintf("Invalid packet/RPC name.");
-
-	if (instruction == 0)
-		nop_states[nop_raknet[arr_element].value][is_rpc] = true;
-	else if(instruction == 1)
-		nop_states[nop_raknet[arr_element].value][is_rpc] = false;
-	else
-		nop_states[nop_raknet[arr_element].value][is_rpc] = !nop_states[nop_raknet[arr_element].value][is_rpc];
-
-	pprintf("state of %s (%d) set to %s.",
-		nop_raknet[arr_element].name,
-		nop_raknet[arr_element].value,
-		(nop_states[nop_raknet[arr_element].value][is_rpc]) ? ("NOP'd") : ("not NOP'd"));
-}
+bool nop_states[255][2][2];

@@ -8,7 +8,7 @@ struct nop_list
 	bool is_rpc;
 };
 
-extern bool nop_states[255][2];
-extern nop_list nop_raknet[189];
+//nop_states[rpc/packet id][0: packet 1: rpc][0: incoming 1: outgoing]
+extern bool nop_states[255][2][2];
 
-void nope_do(char *arg);
+extern nop_list nop_raknet[189];

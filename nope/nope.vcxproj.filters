@@ -4,6 +4,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="raknet_hook.cpp" />
     <ClCompile Include="nop_list.cpp" />
+    <ClCompile Include="nope_commands.cpp" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="SFAPI">
@@ -500,5 +501,6 @@
     <ClInclude Include="main.hpp" />
     <ClInclude Include="raknet_hook.hpp" />
     <ClInclude Include="nop_list.hpp" />
+    <ClInclude Include="nope_commands.hpp" />
   </ItemGroup>
 </Project>
