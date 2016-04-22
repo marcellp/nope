@@ -43,5 +43,10 @@ void nope_do(char *arg)
 		nop_raknet[arr_element].name,
 		nop_raknet[arr_element].value,
 		(direction == 0) ? ("incoming") : ((direction == 1) ? ("outgoing") : ("incoming/outgoing")),
-		(nop_states[nop_raknet[arr_element].value][is_rpc][direction]) ? ("NOP'd") : ("not NOP'd"));
+		(nop_states[nop_raknet[arr_element].value][is_rpc][direction]) ? ("{FF0000}NOP'd{FFFFFF}") : ("{00FF00}not NOP'd{FFFFFF}"));
+}
+
+void nope_list_nops()
+{
+	
 }
