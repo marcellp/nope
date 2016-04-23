@@ -11,7 +11,7 @@ Building nope
 You will need the latest version of SAMPFUNCS to use this tool. If you want to build nope from source:
 
 * Download the SAMPFUNCS C++ API [here](http://blast.hk/threads/6498/).
-* Copy *game_api* and *SAMPAPI* into */weaponfinder/*.
+* Copy *game_api* and *SAMPAPI* into */nope/*.
 * Open the project in Visual Studio and build the solution.
 * Copy the binary file from */bin/* to your SAMPFUNCS directory.
 
