@@ -44,6 +44,7 @@ static void usage()
 		PROGRAM_NAME " is a modification for San Andreas: Multiplayer that can reroute\n"
 		"and block (NOP) incoming and outgoing netcode packets.\n\n"
 		"\t/nope [RakNet packet/RPC name] [on/off] [in/out]\n\t\tNOP the specified raknet RPC/packet.\n"
+		"\t/nope list\n\t\tList all NOP'd RPCs/packets.\n"
 		HELP_OPTION_DESCRIPTION
 		VERSION_OPTION_DESCRIPTION
 		);
@@ -61,9 +62,10 @@ void CALLBACK cmd_nope(std::string param)
 		usage();
 	else if (!_strcmpi(param_str, "version"))
 		version();
-	else {
+	else if (!_strcmpi(param_str, "list"))
+		nope_list_nops();
+	else
 		nope_do(param_str);
-	}
 }
 
 void CALLBACK mainloop()

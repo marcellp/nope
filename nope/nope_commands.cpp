@@ -14,9 +14,9 @@ void nope_do(char *arg)
 		return pprintf("/nope [raknet packet/RPC] [on/off] [in/out]");
 
 	if (!_strcmpi(instruction_str, "on"))
-		instruction = 0;
-	else if (!_strcmpi(instruction_str, "off"))
 		instruction = 1;
+	else if (!_strcmpi(instruction_str, "off"))
+		instruction = 0;
 	else
 		return pprintf("Invalid instruction (off/on).");
 
@@ -48,5 +48,12 @@ void nope_do(char *arg)
 
 void nope_list_nops()
 {
-	
+	pprintf("|___________________LIST OF NOP'd DATA___________________|");
+	for (int i = 0; i < sizeof(nop_raknet) / sizeof(nop_raknet[0]); i++) {
+		if (nop_states[nop_raknet[i].value][nop_raknet[i].is_rpc][0] == true)
+			pprintf("{FFFF00}%s{FFFFFF} (%d, incoming)", nop_raknet[i].name, nop_raknet[i].value);
+		if (nop_states[nop_raknet[i].value][nop_raknet[i].is_rpc][1] == true)
+			pprintf("{FFFF00}%s{FFFFFF} (%d, outgoing)", nop_raknet[i].name, nop_raknet[i].value);
+	}
+	pprintf("|________________________________________________________|");
 }
